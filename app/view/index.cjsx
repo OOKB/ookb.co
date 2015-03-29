@@ -65,6 +65,8 @@ module.exports = React.createClass
           pageData =
             images: archiveYears[parseInt(pageId)]
             title: pageId
+          console.log 'archive', pageId
+          pageId = 'archive'
         else
           console.log 'missing page data!', pageId
           pageData = {}
