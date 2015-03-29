@@ -32,9 +32,9 @@ module.exports = React.createClass
     {pageId} = @context.router.getCurrentParams()
     pathParts = @context.router.getCurrentPathname().split('/')
 
+    theme = theme or {defaultDisplay: 'imageGrid', homepageId: 'work'}
     unless pageId
-      pageId = homepageId or 'homepage'
-
+      pageId = homepageId or theme.homepageId or 'homepage'
     if pageId
       if workIndex and pageData = db.work.contents[workIndex[pageId]]
         # @TODO Should check section too...
@@ -51,9 +51,8 @@ module.exports = React.createClass
           pageData = {}
       if pageId is 'contact' and wufoo
         pageData.wufoo = wufoo
-      if theme
-        pageData.theme = theme
-        pageData.display = theme?.display?[pageId] or theme.defaultDisplay
+      pageData.theme = theme
+      pageData.display = theme.display?[pageId] or theme.defaultDisplay
     if pageData?.title
       pageTitle = title + ' | ' + pageData.title
 
