@@ -44,8 +44,15 @@ module.exports = React.createClass
           if pageData[contentId]
             pageData = pageData[contentId]
           else if pageData.contentsIndex
+            sectionContents = pageData.contents
+            lastIndex = pageData.contents.length - 1
             dataIndex = pageData.contentsIndex[contentId]
             pageData = pageData.contents[dataIndex]
+            if pageData
+              prevIndex = if dataIndex is 0 then lastIndex else dataIndex - 1
+              nextIndex = if lastIndex then 0 else dataIndex + 1
+              pageData._previous = sectionContents[prevIndex]
+              pageData._next = sectionContents[nextIndex]
           else
             console.log 'no contentId data', contentId
           console.log 'sub-page', pageId, contentId
