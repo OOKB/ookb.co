@@ -51,12 +51,14 @@ module.exports = React.createClass
             if pageData
               prevIndex = if dataIndex is 0 then lastIndex else dataIndex - 1
               nextIndex = if lastIndex then 0 else dataIndex + 1
+              pageData._sectionId = pageId
               pageData._previous = sectionContents[prevIndex]
               pageData._next = sectionContents[nextIndex]
           else
             console.log 'no contentId data', contentId
           console.log 'sub-page', pageId, contentId
         else
+          pageData._sectionId = pageId
           console.log 'normal pg data', pageId
       else
         if pathParts[1] is 'archive' and archiveYears
