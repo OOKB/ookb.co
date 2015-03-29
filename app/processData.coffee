@@ -10,7 +10,16 @@ module.exports = (data) ->
   data.section = {}
   data.sections = []
   archiveYears = {}
-
+  if db
+    # For each key in the database.
+    _.each db, (val, key) ->
+      if val?.contents # If the value has a contents property
+        # Create a contentsIndex.
+        data.db[key].contentsIndex = _.map val.contents, (item, i) ->
+          {filename, path, slug} = item
+          # Where the key is slug or path or filename.
+          key = slug or path or filename
+          item[key] = i # Value is the index in the array.
   if db.work?.contents
     {archiveMenu} = db.work
     unless archiveMenu is false
