@@ -8,7 +8,7 @@ module.exports =
 
   <Route name="app" path="/" handler={Index}>
     <DefaultRoute handler={Page}/>
-    <Route name="page" path=":pageId/?:contentId?" handler={Page} />
     <Route name="work" path="work/:pageId" handler={Page} />
     <Route name="archive" path="archive/:pageId" handler={Page} />
+    <Route name="page" path=":pageId/?:contentId?" handler={Page} />
   </Route>
