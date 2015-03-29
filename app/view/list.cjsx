@@ -1,6 +1,7 @@
 React = require 'react'
 {Link} = require 'react-router'
 _ = require 'lodash'
+moment = require 'moment'
 
 module.exports = React.createClass
   contextTypes: {
@@ -14,7 +15,7 @@ module.exports = React.createClass
       isMounted: true
 
   render: ->
-    {items, sectionId} = @props
+    {items, sectionId, dateFormat} = @props
     {isMounted} = @state
     {i} = @context.router.getCurrentQuery()
     i = parseInt(i)
@@ -27,14 +28,16 @@ module.exports = React.createClass
       key = key or rev or id or i
       currentPath = '/' + sectionId
       url = currentPath + '/' + (slug or path or filename)
+      if date
+        dateStr = moment(date).format(dateFormat) + " » "
+        DateEl = <span className="date">{dateStr}</span>
       Title =
         <Link to={url} role="button">
           {title}
         </Link>
       <li key={key}>
-        {if date then <span>{date}</span>}
-        {if date then " » "}
-        {Title}
+        { DateEl }
+        { Title }
       </li>
 
     <ul className="title-list">

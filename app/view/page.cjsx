@@ -25,14 +25,15 @@ module.exports = React.createClass
         }
         SlideShowEl = React.createElement(SlideShow, displayProps)
       else if display is 'imageGrid'
-        if not theme.imageGrid then theme.imageGrid = {}
+        if not theme.imageGrid then theme.imageGrid = {height:400, width:400}
         displayProps = _.merge theme.imageGrid, {
           images: images or contents
           baseDir: dir
         }
         Grid = React.createElement(ImageGrid, displayProps)
       else if display is 'titleList'
-        displayProps = _.merge theme.imageGrid, {
+        if not theme.titleList then theme.titleList = {dateFormat: 'L'}
+        displayProps = _.merge theme.titleList, {
           items: images or contents
           sectionId: _sectionId
         }
