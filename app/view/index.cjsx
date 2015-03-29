@@ -1,5 +1,6 @@
 React = require 'react'
 {Link, RouteHandler} = require 'react-router'
+dot = require('dot-object')('/')
 
 Header = require './header'
 Main = require './main'

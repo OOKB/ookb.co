@@ -5,6 +5,7 @@ Wufoo = require './wufoo'
 SlideShow = require './slideshow'
 ImageGrid = require './imageGrid/imageGrid'
 Quote = require './quote'
+List = require './list'
 
 module.exports = React.createClass
   render: ->
@@ -25,6 +26,11 @@ module.exports = React.createClass
           baseDir: dir
         }
         Grid = React.createElement(ImageGrid, displayProps)
+      else if display is 'titleList'
+        displayProps = _.merge theme.imageGrid, {
+          items: images or contents
+        }
+        ListEl = React.createElement(List, displayProps)
       else
         console.log 'no display'
     <div className="page">
@@ -35,5 +41,6 @@ module.exports = React.createClass
           <div className="content" dangerouslySetInnerHTML={ __html: content }/>
       }
       { Grid }
+      { ListEl }
       { if wufoo then <Wufoo hash={wufoo.hash} subdomain={wufoo.subdomain} /> }
     </div>
