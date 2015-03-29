@@ -33,3 +33,4 @@ node_modules
 .lock-wscript
 
 /tmp/
+.DS_Store
