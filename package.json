@@ -1,16 +1,16 @@
 {
-  "name": "react-starter",
-  "homepage": "https://www.cape.io",
+  "name": "ookb",
+  "homepage": "http://test.ookb.co",
   "version": "0.0.1",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cape-io/react-starter"
+    "url": "git://github.com/ookb/ookb.co"
   },
   "author": "Team CAPE.io",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cape-io/react-starter/issues"
+    "url": "https://github.com/ookb/ookb.co/issues"
   },
   "main": "app/app.cjsx",
   "scripts": {
