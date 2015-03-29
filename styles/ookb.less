@@ -50,6 +50,40 @@ footer {
 /* ===================================================== */
 
 header {
+
+  > a {
+    position: fixed;
+    top: 2rem;
+    left: 3rem;
+    z-index: 999;
+    display: block;
+    background-color: transparent;
+    background-image: url('/images/ookblogo.png');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 7rem;
+    width: 7rem;
+    color: transparent;
+    border: none;
+    text-decoration: none;
+    .hide-text;
+
+    &:hover {
+      display: block;
+      background-color: transparent;
+      background-image: url('/images/ookblogo.png');
+      background-position: center center;
+      background-size: contain;
+      color: transparent;
+      border: none;
+      text-decoration: none;
+      .hide-text;
+    }
+
+    h1 {
+    }
+  }
   nav {
     position: fixed;
     top: 4rem;
@@ -61,6 +95,8 @@ header {
       margin: 0;
       padding: 0;
       border-left:1px solid @ookb-brown;
+
+      h2 { display: none; }
 
       li {
         display: inline-block;
@@ -345,6 +381,27 @@ aside#related {
 /** old stuff to go through above here **/
 
 /** New stuff for EZLE site below here **/
+main {
+  margin-top: 10rem;
+  aside {
+    nav {
+      position: relative;
+      margin-bottom: 2rem;
+
+      &::after {
+        .clearfix
+      }
+
+      ul {
+        float: left;
+        width: 50%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
 .image-grid {
   list-style: none;
   margin: 0;
