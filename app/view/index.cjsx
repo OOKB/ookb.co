@@ -1,6 +1,6 @@
 React = require 'react'
 {Link, RouteHandler} = require 'react-router'
-dot = require('dot-object')('/')
+# dot = require('dot-object')('/')
 
 Header = require './header'
 Main = require './main'
@@ -13,6 +13,8 @@ module.exports = React.createClass
   render: ->
     {db, title, sha, sections, section, workIndex, archiveYears, currentYear, theme} = @props
     {primaryMenu, author, description, startYear, wufoo, homepageId} = db
+    {pageId, contentId} = @context.router.getCurrentParams()
+    pathParts = @context.router.getCurrentPathname().split('/')
 
     appFileName = sha or 'app'
     cssFilePath = "/assets/#{appFileName}.css"
@@ -30,9 +32,6 @@ module.exports = React.createClass
     unless title
       title = '[title]'
 
-    {pageId} = @context.router.getCurrentParams()
-    pathParts = @context.router.getCurrentPathname().split('/')
-
     theme = theme or {defaultDisplay: 'imageGrid', homepageId: 'work'}
     unless pageId
       pageId = homepageId or theme.homepageId or 'homepage'
@@ -41,7 +40,17 @@ module.exports = React.createClass
         # @TODO Should check section too...
         console.log 'work page', pageId
       else if pageData = db[pageId]
-        console.log 'normal pg data', pageId
+        if contentId
+          if pageData[contentId]
+            pageData = pageData[contentId]
+          else if pageData.contentsIndex
+            dataIndex = pageData.contentsIndex[contentId]
+            pageData = pageData.contents[dataIndex]
+          else
+            console.log 'no contentId data', contentId
+          console.log 'sub-page', pageId, contentId
+        else
+          console.log 'normal pg data', pageId
       else
         if pathParts[1] is 'archive' and archiveYears
           pageData =
