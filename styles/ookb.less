@@ -4,6 +4,29 @@
 /* =================================================================== */
 /* =================================================================== */
 
+* {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  box-sizing:border-box;
+  position: relative;
+  /* type stuff */
+  /**/
+  -moz-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  -ms-font-feature-settings: "kern";
+  -o-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  /**/
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /**/
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
 html {
   background: @ookb-gray;
   color: @ookb-brown;
@@ -54,7 +77,6 @@ header {
   > a {
     position: fixed;
     top: 2rem;
-    left: 3rem;
     z-index: 999;
     display: block;
     background-color: transparent;
@@ -87,7 +109,7 @@ header {
   nav {
     position: fixed;
     top: 4rem;
-    right: 2rem;
+    right: 3rem;
     z-index: 99;
 
     ul {
@@ -404,8 +426,11 @@ main {
 
 .image-grid {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0 -50vw;
+  padding: 0 1.5rem;
+  width: 100vw;
+  position: relative;
+  left: 50%;
 
   &::after {
     .clearfix;
