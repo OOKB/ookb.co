@@ -29,18 +29,16 @@ section {
         background-image: url('/media/loading.gif');
         background-position: center center;
         background-repeat: no-repeat;
-        border: 7.64px solid white;
         position: fixed;
         top:0;
         right:0;
         bottom: 0;
         left:0;
-        height: 100%;
-        width: 100%;
         padding: 20px;
         overflow: hidden;
         text-align: center;
-        z-index: 99;
+        vertical-align: middle;
+        z-index: 999;
 
         &::before {
           content: '';
@@ -50,7 +48,10 @@ section {
           margin-right: -0.5%; /* Adjusts for spacing */
         }
 
-        img {
+        a {
+          display: initial;
+        }
+        a > img {
           max-height: 99%;
           max-width: 99%;
           width: auto;
