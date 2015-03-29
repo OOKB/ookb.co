@@ -14,7 +14,7 @@ module.exports = React.createClass
       isMounted: true
 
   render: ->
-    {items} = @props
+    {items, sectionId} = @props
     {isMounted} = @state
     {i} = @context.router.getCurrentQuery()
     i = parseInt(i)
@@ -25,7 +25,7 @@ module.exports = React.createClass
       unless title
         return false
       key = key or rev or id or i
-      currentPath = @context.router.getCurrentPathname()
+      currentPath = '/' + sectionId
       url = currentPath + '/' + (slug or path or filename)
       Title =
         <Link to={url} role="button">

@@ -14,9 +14,9 @@ module.exports = React.createClass
 
     <div className="img-detail">
       <Link className="button close" to={path} role="button"> Close </Link>
-      <Link className="button left" to={path} query={i:prevIndex} role="button"> Previous </Link>
+      <Link className="button left previous" to={path} query={i:prevIndex} role="button"> Previous </Link>
       <Link to={path} role="button" onClick={@close}>
         <img className="large" src={imgUrl} alt={filename} />
       </Link>
-      <Link className="button right" to={path} query={i:nextIndex} role="button"> Next </Link>
+      <Link className="button right next" to={path} query={i:nextIndex} role="button"> Next </Link>
     </div>

@@ -1,5 +1,6 @@
 React = require 'react'
 _ = require 'lodash'
+{Link} = require 'react-router'
 
 Wufoo = require './wufoo'
 SlideShow = require './slideshow'
@@ -8,8 +9,12 @@ Quote = require './quote'
 List = require './list'
 
 module.exports = React.createClass
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  }
   render: ->
     {content, title, images, dir, wufoo, contents, display, quote, theme} = @props
+    {_next, _previous, _sectionId, slug, path, filename} = @props
     if not theme then theme = {}
     if contents?.length or images?.length
       if display is 'slideShow' or display is 'slideshow'
@@ -29,10 +34,25 @@ module.exports = React.createClass
       else if display is 'titleList'
         displayProps = _.merge theme.imageGrid, {
           items: images or contents
+          sectionId: _sectionId
         }
         ListEl = React.createElement(List, displayProps)
       else
         console.log 'no display'
+    if _next and _previous
+      currentPath = '/' + _sectionId
+      prevUrl = currentPath + '/' + (_previous.slug or _previous.path or _previous.filename)
+      nextUrl = currentPath + '/' + (_next.slug or _next.path or _next.filename)
+      Pager =
+        <aside className="pager">
+          <Link className="button left previous" to={prevUrl} title={_previous.title}>
+            Previous
+          </Link>
+          <Link className="button right next" to={nextUrl} title={_next.title}>
+            Next
+          </Link>
+        </aside>
+
     <div className="page">
       { if title then <h1>{title}</h1> }
       { SlideShowEl }
@@ -40,6 +60,7 @@ module.exports = React.createClass
       { if content
           <div className="content" dangerouslySetInnerHTML={ __html: content }/>
       }
+      { Pager }
       { Grid }
       { ListEl }
       { if wufoo then <Wufoo hash={wufoo.hash} subdomain={wufoo.subdomain} /> }
