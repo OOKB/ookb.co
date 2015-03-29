@@ -21,13 +21,14 @@ module.exports = React.createClass
     maxIndex = items.length - 1
 
     ItemEl = (item, index) =>
-      {id, filename, rev, title, date, slug, path, dir} = item
+      {id, filename, rev, title, date, slug, path} = item
       unless title
         return false
       key = key or rev or id or i
-      url = dir + '/' + (slug or path or filename)
+      currentPath = @context.router.getCurrentPathname()
+      url = currentPath + '/' + (slug or path or filename)
       Title =
-        <Link to={path or '/'} query={i:index} role="button">
+        <Link to={url} role="button">
           {title}
         </Link>
       <li key={key}>

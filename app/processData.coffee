@@ -15,11 +15,13 @@ module.exports = (data) ->
     _.each db, (val, key) ->
       if val?.contents # If the value has a contents property
         # Create a contentsIndex.
-        data.db[key].contentsIndex = _.map val.contents, (item, i) ->
+        contentsIndex = {}
+        _.each val.contents, (item, i) ->
           {filename, path, slug} = item
           # Where the key is slug or path or filename.
-          key = slug or path or filename
-          item[key] = i # Value is the index in the array.
+          contentId = slug or path or filename
+          contentsIndex[contentId] = i # Value is the index in the array.
+        data.db[key].contentsIndex = contentsIndex
   if db.work?.contents
     {archiveMenu} = db.work
     unless archiveMenu is false
