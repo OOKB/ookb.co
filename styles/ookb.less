@@ -242,6 +242,25 @@ main {
   }
 }
 
+.title-list {
+  li {
+    margin: .33em 0;
+
+    &:first-of-type {
+      a {
+        font-size: 1.5em;
+        margin-bottom: .5em;
+      }
+    }
+
+    span.date {
+      color: @ookb-darkgray;
+      width: 8em;
+      display: inline-block;
+    }
+  }
+}
+
 @media (min-width: 400px) {
   .image-grid {
     .image {
@@ -307,7 +326,19 @@ main {
 
 /* Notes section
    ===================================== */
+.page {
+  h1 {
+    color: @ookb-yellow;
+  }
 
+  .content {
+    p {
+      &:first-of-type {
+        font-size: 1.33em;
+      }
+    }
+  }
+}
 aside.pager {
   border-top: 1px solid @ookb-brown;
   margin-top: 3rem;
