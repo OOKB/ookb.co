@@ -56,17 +56,26 @@ module.exports = React.createClass
         if calculateWidth then style.width = imgDimensions[index].width
         if calculateHeight then style.height = imgDimensions[index].height
         dimensions = imgDimensions[index]
+      if id
+        ext = id.split('.').pop()
+        unless _.contains ['jpg', 'jpeg', 'gif', 'png'], ext
+          noImage = true
+      unless noImage
+        ImageElement =
+          <Image
+            id={id}
+            filename={filename}
+            i={index}
+            height={height}
+            width={width}
+            domain={domain}
+            dimensions={dimensions}
+            fit={fit}
+          />
+      unless ImageElement or Text or Detail
+        return false
       <li className={className} key={key} style={style} >
-        <Image
-          id={id}
-          filename={filename}
-          i={index}
-          height={height}
-          width={width}
-          domain={domain}
-          dimensions={dimensions}
-          fit={fit}
-        />
+        {ImageElement}
         {Text}
         {Detail}
       </li>
