@@ -46,8 +46,13 @@ module.exports = React.createClass
         if images
           {id, filename, rev} = images[0]
       key = key or rev or id or i
+      # Try to figure out if this element has an image.
+      if id
+        ext = id.split('.').pop()
+        unless _.contains ['jpg', 'jpeg', 'gif', 'png'], ext
+          noImage = true
       if isMounted and i is index
-        Detail = <ImageDetail id={id} filename={filename} i={i} maxIndex={maxIndex} />
+        Detail = <ImageDetail id={id} filename={filename} i={i} maxIndex={maxIndex} skip={noImage}/>
       if title or content or year or medium
         Text = React.createElement(ImageText, image)
       className = if sold then "image sold" else "image"
@@ -56,10 +61,6 @@ module.exports = React.createClass
         if calculateWidth then style.width = imgDimensions[index].width
         if calculateHeight then style.height = imgDimensions[index].height
         dimensions = imgDimensions[index]
-      if id
-        ext = id.split('.').pop()
-        unless _.contains ['jpg', 'jpeg', 'gif', 'png'], ext
-          noImage = true
       unless noImage
         ImageElement =
           <Image
